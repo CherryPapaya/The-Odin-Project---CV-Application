@@ -1,11 +1,14 @@
-export default function Preivew({ setIsSubmitted }) {
+export default function Preivew({ setIsSubmitted, person }) {
   function handleClick() {
     setIsSubmitted(false);
   }
   
   return (
     <>
-      <p>Preview :D</p>
+      <p>{person.fname}</p>
+      <p>{person.lname}</p>
+      <p>{person.phone}</p>
+      <p>{person.email}</p>
       <button type="button" onClick={handleClick}>Edit</button>
     </>
   );

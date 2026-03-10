@@ -1,5 +1,4 @@
 import { useState } from "react";
-import personData from "../../data/person";
 import Contact from "./pages/GeneralInfo";
 import WorkExperience from "./pages/WorkExp";
 
@@ -10,8 +9,7 @@ const pages = [
 
 export let isSubmitted = false;
 
-export default function Form({ setIsSubmitted }) {
-  const [person, setPerson] = useState(personData);
+export default function Form({ setIsSubmitted, person, setPerson }) {
   const [formData, setFormData] = useState({});
   const [pageIndex, setPageIndex] = useState(0);
   

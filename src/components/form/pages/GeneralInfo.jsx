@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputField from "../InputField";
 
-export default function Contact({ onChange, person, formData }) {
+export default function GeneralInfo({ onChange, person, formData }) {
   return (
     <div>
       <InputField 
