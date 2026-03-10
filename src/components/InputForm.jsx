@@ -1,28 +1,51 @@
 import { useState } from "react";
-import person from "../data/person";
+import personData from "../data/person";
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    document.querySelector('.js-submit-btn').click();
+  }
+});
 
 export default function Form() {
-  const [person, setPerson] = useState(person);
+  const [person, setPerson] = useState(personData);
+  const [formData, setFormData] = useState({});
   
-  function handleSubmit() {
-    const newPerson = () => {
-      []
-    }
+  function handleChange(attribute, newValue) {
+    setFormData(prev => ({
+      ...prev,
+      [attribute]: newValue
+    }));
   }
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const newPerson = {
+      ...person,
+      ...formData
+    };
+
+    setPerson(newPerson);
+    console.log(newPerson);
+  }
+  
   
   return (
     <form onSubmit={handleSubmit}>
-      <InputField label="First name" type="text" attribute="fname" />
-      <InputField label="Last name" type="text" attribute="lname" />
-      <InputField label="Phone no." type="tel" attribute="phone" />
-      <InputField label="E-mail" type="email" attribute="email" />
+      <InputField label="First name" type="text" attribute="fname" onChange={handleChange} />
+      <InputField label="Last name" type="text" attribute="lname" onChange={handleChange} />
+      <InputField label="Phone no." type="tel" attribute="phone" onChange={handleChange} />
+      <InputField label="E-mail" type="email" attribute="email" onChange={handleChange} />
       
-      <button type="submit">Submit</button>
+      <button type="submit" className="submit-btn js-submit-btn">
+        Submit
+      </button>
     </form>
   );
 }
 
-function InputField({ label, type}) {
+function InputField({ label, type, attribute, onChange}) {
   const [input, setInput] = useState('');
   
   return (
@@ -30,12 +53,11 @@ function InputField({ label, type}) {
       <label>{label}</label>
       <input 
         type={type}
-        htmlFor={label}
         value={input}
         onChange={(e) => {
           const newValue = e.target.value;
           setInput(newValue);
-          console.log(newValue);
+          onChange(attribute, newValue);
         }} />
     </div>
   );
