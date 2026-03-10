@@ -1,12 +1,6 @@
 import { useState } from "react";
 import personData from "../data/person";
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    document.querySelector('.js-submit-btn').click();
-  }
-});
-
 export default function Form() {
   const [person, setPerson] = useState(personData);
   const [formData, setFormData] = useState({});
