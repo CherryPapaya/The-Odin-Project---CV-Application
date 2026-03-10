@@ -1,19 +1,17 @@
-import { useState } from "react";
-
-export default function InputField({ label, type, attribute, onChange}) {
-  const [input, setInput] = useState('');
-  
+export default function InputField({ value, label, type, attribute, onChange }) {
   return (
     <div>
-      <label>{label}</label>
-      <input 
+      <label htmlFor={attribute}>{label}</label>
+
+      <input
+        id={attribute}
         type={type}
-        value={input}
+        value={value || ""}
         onChange={(e) => {
           const newValue = e.target.value;
-          setInput(newValue);
           onChange(attribute, newValue);
-        }} />
+        }}
+      />
     </div>
   );
 }

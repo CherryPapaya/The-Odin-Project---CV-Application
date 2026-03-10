@@ -1,6 +1,6 @@
 import { useState } from "react";
 import personData from "../../data/person";
-import Contact from "./pages/Contact";
+import Contact from "./pages/GeneralInfo";
 import WorkExperience from "./pages/WorkExp";
 
 const pages = [
@@ -47,7 +47,7 @@ export default function Form() {
   let Page = pages[pageIndex];
   return (
     <form onSubmit={handleSubmit}>
-      <Page onChange={handleChange} person={person} />
+      <Page onChange={handleChange} person={person} formData={formData}/>
       
       <button type="button" data-action="prev" onClick={handleClick}>Previous</button>
       <button type="button" data-action="next" onClick={handleClick}>Next</button>
