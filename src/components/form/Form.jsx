@@ -8,7 +8,9 @@ const pages = [
   WorkExperience,
 ];
 
-export default function Form() {
+export let isSubmitted = false;
+
+export default function Form({ setIsSubmitted }) {
   const [person, setPerson] = useState(personData);
   const [formData, setFormData] = useState({});
   const [pageIndex, setPageIndex] = useState(0);
@@ -29,6 +31,7 @@ export default function Form() {
     };
 
     setPerson(newPerson);
+    setIsSubmitted(true);
     console.log(newPerson);
   }
   
