@@ -1,15 +1,16 @@
-export default function InputField({ value, label, type, attribute, onChange }) {
+export default function InputField({ value, label, type, name, index, onChange }) {
+  const id = name === 'experience' ? name + index : name;
+  
   return (
     <div>
-      <label htmlFor={attribute}>{label}</label>
+      <label htmlFor={id}>{label}</label>
 
       <input
-        id={attribute}
+        id={id}
         type={type}
-        value={value || ""}
+        value={value ?? ""}
         onChange={(e) => {
-          const newValue = e.target.value;
-          onChange(attribute, newValue);
+          onChange(name, e.target.value, index);
         }}
       />
     </div>

@@ -5,6 +5,8 @@ import Preview from './components/preview/Preview';
 
 import './App.css'
 
+
+
 function App() {
   const [person, setPerson] = useState(personData);
   const [isSubmitted, setIsSubmitted] = useState(false);

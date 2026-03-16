@@ -10,14 +10,26 @@ const pages = [
 export let isSubmitted = false;
 
 export default function Form({ setIsSubmitted, person, setPerson }) {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(person ?? {});
   const [pageIndex, setPageIndex] = useState(0);
   
-  function handleChange(attribute, newValue) {
-    setFormData(prev => ({
-      ...prev,
-      [attribute]: newValue
-    }));
+  function handleChange(name, value, index = null) {
+    if (name === "experience") {
+      setFormData(prev => {
+        const updated = [...(prev.experience ?? [])];
+        updated[index] = value;
+
+        return {
+          ...prev,
+          experience: updated
+        };
+      });
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   }
   
   function handleSubmit(e) {
@@ -30,6 +42,7 @@ export default function Form({ setIsSubmitted, person, setPerson }) {
 
     setPerson(newPerson);
     setIsSubmitted(true);
+    
     console.log(newPerson);
   }
   

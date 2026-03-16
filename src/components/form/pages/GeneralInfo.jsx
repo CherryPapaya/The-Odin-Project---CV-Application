@@ -1,14 +1,13 @@
-import { useState } from "react";
 import InputField from "../InputField";
 
 export default function GeneralInfo({ onChange, person, formData }) {
   return (
-    <div>
+    <div className="form-section form-section-general">
       <InputField 
         label="First name" 
         value={formData.fname ?? person.fname} 
         type="text" 
-        attribute="fname" 
+        name="fname" 
         onChange={onChange} 
       />
         
@@ -16,7 +15,7 @@ export default function GeneralInfo({ onChange, person, formData }) {
         label="Last name" 
         value={formData.lname ?? person.lname} 
         type="text" 
-        attribute="lname" 
+        name="lname" 
         onChange={onChange} 
       />
         
@@ -24,7 +23,7 @@ export default function GeneralInfo({ onChange, person, formData }) {
         label="Phone no." 
         value={formData.phone ?? person.phone} 
         type="tel" 
-        attribute="phone" 
+        name="phone" 
         onChange={onChange} 
       />
         
@@ -32,7 +31,7 @@ export default function GeneralInfo({ onChange, person, formData }) {
         label="E-mail" 
         value={formData.email ?? person.email} 
         type="email" 
-        attribute="email" 
+        name="email" 
         onChange={onChange} 
       />
         
