@@ -1,5 +1,8 @@
-export default function InputField({ value, label, type, name, index, onChange }) {
-  const id = name === 'experience' ? name + index : name;
+import { getArrayProperties } from "../../data/person";
+
+export default function InputField({ value, label, type, name, index, onChange, attribute }) {
+  
+  const id = getArrayProperties().includes(name) ? name + attribute + index : name;
   
   return (
     <div>
@@ -10,7 +13,7 @@ export default function InputField({ value, label, type, name, index, onChange }
         type={type}
         value={value ?? ""}
         onChange={(e) => {
-          onChange(name, e.target.value, index);
+          onChange(name, e.target.value, index, attribute);
         }}
       />
     </div>

@@ -12,7 +12,13 @@ export default function Preivew({ setIsSubmitted, person }) {
       
       {
         person.experience.map(item => (
-          <p>{item}</p>
+          // TODO: Make items in experience and such into objects with key attribute
+          <div key={Math.random()}>
+            <p>{item.company}</p>
+            <p>{item.role}</p>
+            <p>{item.startDate}</p>
+            <p>{item.endDate}</p>
+          </div>
         ))
       }
       <button type="button" onClick={handleClick}>Edit</button>

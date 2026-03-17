@@ -7,20 +7,53 @@ export default function WorkExperience({ onChange, person, formData, handleAdd }
   
   function handleAdd() {
     setTotal(total + 1);
-    console.log(total);
   }
   
   let i = 0;
   while (i <= total) {
     expFields.push(
-      <InputField
-        label="Experience"
-        value={formData.experience?.[i] ?? person.experience?.[i] ?? ""}
-        type="text"
-        name="experience"
-        index={i}
-        onChange={onChange}
-        />    
+      <div className={`experience-wrapper-${i}`} key={i}>
+        <InputField
+          label="Experience"
+          attribute="company"
+          value={formData.experience?.[i].company ?? person.experience?.[i].company ?? ""}
+          type="text"
+          name="experience"
+          index={i}
+          onChange={onChange}
+        />
+        
+        <InputField
+          label="Role"
+          attribute="role"
+          value={formData.experience?.[i].role ?? person.experience?.[i].role ?? ""}
+          type="text"
+          name="experience"
+          index={i}
+          onChange={onChange}
+        />
+        
+        <InputField
+          label="Start Date"
+          attribute="startDate"
+          value={formData.experience?.[i].startDate ?? person.experience?.[i].startDate ?? ""}
+          type="date"
+          name="experience"
+          index={i}
+          onChange={onChange}
+        />
+        
+        <InputField
+          label="End Date"
+          attribute="endDate"
+          value={formData.experience?.[i].endDate ?? person.experience?.[i].endDate ?? ""}
+          type="date"
+          name="experience"
+          index={i}
+          onChange={onChange}
+        />
+        
+      </div>
     )
     
     i++;

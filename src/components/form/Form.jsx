@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Contact from "./pages/GeneralInfo";
 import WorkExperience from "./pages/WorkExp";
+import { getArrayProperties } from "../../data/person";
 
 const pages = [
   Contact,
@@ -13,15 +14,15 @@ export default function Form({ setIsSubmitted, person, setPerson }) {
   const [formData, setFormData] = useState(person ?? {});
   const [pageIndex, setPageIndex] = useState(0);
   
-  function handleChange(name, value, index = null) {
-    if (name === "experience") {
+  function handleChange(name, value, index = null, attribute = null) {
+    if (getArrayProperties().includes(name)) {
       setFormData(prev => {
-        const updated = [...(prev.experience ?? [])];
-        updated[index] = value;
+        const updated = [...(prev[name] ?? [])];
+        updated[index][attribute] = value;
 
         return {
           ...prev,
-          experience: updated
+          [name]: updated
         };
       });
     } else {
@@ -44,6 +45,7 @@ export default function Form({ setIsSubmitted, person, setPerson }) {
     setIsSubmitted(true);
     
     console.log(newPerson);
+    console.log(getArrayProperties());
   }
   
   function handleClick(e) {
@@ -56,7 +58,7 @@ export default function Form({ setIsSubmitted, person, setPerson }) {
     if (pageIndex > 0 && action === 'prev') {
       setPageIndex(pageIndex - 1);
     }
-  }
+    }
   
   let Page = pages[pageIndex];
   return (
