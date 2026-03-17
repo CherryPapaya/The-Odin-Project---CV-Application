@@ -17,12 +17,20 @@ export default function Form({ setIsSubmitted, person, setPerson }) {
   function handleChange(name, value, index = null, attribute = null) {
     if (getArrayProperties().includes(name)) {
       setFormData(prev => {
-        const updated = [...(prev[name] ?? [])];
-        updated[index][attribute] = value;
+      const array = prev[name] ?? [];
+      const updated = [...array];
 
-        return {
-          ...prev,
-          [name]: updated
+      // ensure the object exists
+      const currentItem = updated[index] ?? {};
+
+      updated[index] = {
+        ...currentItem,
+        [attribute]: value
+      };
+
+      return {
+        ...prev,
+        [name]: updated
         };
       });
     } else {

@@ -3,20 +3,21 @@ import InputField from "../InputField";
 
 export default function WorkExperience({ onChange, person, formData, handleAdd }) {
   const [total, setTotal] = useState(person.experience.length - 1 || 0);
-  let expFields = [];
+  let expList = [];
   
   function handleAdd() {
     setTotal(total + 1);
+    // console.log(expList);
   }
   
   let i = 0;
   while (i <= total) {
-    expFields.push(
+    expList.push(
       <div className={`experience-wrapper-${i}`} key={i}>
         <InputField
           label="Experience"
           attribute="company"
-          value={formData.experience?.[i].company ?? person.experience?.[i].company ?? ""}
+          value={formData.experience?.[i]?.company ?? person.experience?.[i]?.company ?? ""}
           type="text"
           name="experience"
           index={i}
@@ -26,7 +27,7 @@ export default function WorkExperience({ onChange, person, formData, handleAdd }
         <InputField
           label="Role"
           attribute="role"
-          value={formData.experience?.[i].role ?? person.experience?.[i].role ?? ""}
+          value={formData.experience?.[i]?.role ?? person.experience?.[i]?.role ?? ""}
           type="text"
           name="experience"
           index={i}
@@ -36,7 +37,7 @@ export default function WorkExperience({ onChange, person, formData, handleAdd }
         <InputField
           label="Start Date"
           attribute="startDate"
-          value={formData.experience?.[i].startDate ?? person.experience?.[i].startDate ?? ""}
+          value={formData.experience?.[i]?.startDate ?? person.experience?.[i]?.startDate ?? ""}
           type="date"
           name="experience"
           index={i}
@@ -46,7 +47,7 @@ export default function WorkExperience({ onChange, person, formData, handleAdd }
         <InputField
           label="End Date"
           attribute="endDate"
-          value={formData.experience?.[i].endDate ?? person.experience?.[i].endDate ?? ""}
+          value={formData.experience?.[i]?.endDate ?? person.experience?.[i]?.endDate ?? ""}
           type="date"
           name="experience"
           index={i}
@@ -62,7 +63,7 @@ export default function WorkExperience({ onChange, person, formData, handleAdd }
   return (    
     <div className="form-section form-section-exp">
       
-      {expFields}
+      {expList}
       <button type="button" onClick={handleAdd}>Add experience</button>
 
       {/* <InputField
