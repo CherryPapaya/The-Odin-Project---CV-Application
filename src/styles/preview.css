@@ -1,0 +1,17 @@
+.preview {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.name {
+  display: flex;
+  font-size: 3rem;
+}
+
+.fname {
+}
+
+.general-info {
+  /* border: 2px solid red; */
+}
