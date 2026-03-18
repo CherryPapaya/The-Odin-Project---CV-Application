@@ -1,6 +1,6 @@
 import { getArrayProperties } from "../../data/person";
 
-export default function InputField({ value, label, type, name, index, onChange, attribute }) {
+export default function InputField({ label, type, value, name, index, attribute, onChange }) {
   
   const id = getArrayProperties().includes(name) ? name + attribute + index : name;
   

@@ -8,7 +8,7 @@ const person = {
     role: "",
     startDate: "",
     endDate: "",
-    description: [],
+    description: [""],
   }],
   education: [{}],
   skills: {

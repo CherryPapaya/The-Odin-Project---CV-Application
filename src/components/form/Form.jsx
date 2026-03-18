@@ -1,11 +1,13 @@
 import { useState } from "react";
-import Contact from "./pages/GeneralInfo";
-import WorkExperience from "./pages/WorkExp";
+import GeneralInfo from "./pages/GeneralInfo";
+import ListPage from "./pages/ListPage";
 import { getArrayProperties } from "../../data/person";
+import { educationConfig, experienceConfig } from "../../data/page-configs";
 
 const pages = [
-  Contact,
-  WorkExperience,
+  { component: GeneralInfo },
+  { component: ListPage, config: experienceConfig },
+  { component: ListPage, config: educationConfig }
 ];
 
 export let isSubmitted = false;
@@ -17,21 +19,24 @@ export default function Form({ setIsSubmitted, person, setPerson }) {
   function handleChange(name, value, index = null, attribute = null) {
     if (getArrayProperties().includes(name)) {
       setFormData(prev => {
-      const array = prev[name] ?? [];
-      const updated = [...array];
+        const array = prev[name] ?? [];
+        const updated = [...array];
 
-      // ensure the object exists
-      const currentItem = updated[index] ?? {};
+        const currentItem = updated[index] ?? {};
 
-      updated[index] = {
-        ...currentItem,
-        [attribute]: value
-      };
+        if (attribute) {
+          updated[index] = {
+            ...currentItem,
+            [attribute]: value
+          };
+        } else {
+          updated[index] = value; 
+        }
 
-      return {
-        ...prev,
-        [name]: updated
-        };
+        return {
+          ...prev,
+          [name]: updated
+          };
       });
     } else {
       setFormData(prev => ({
@@ -68,10 +73,10 @@ export default function Form({ setIsSubmitted, person, setPerson }) {
     }
     }
   
-  let Page = pages[pageIndex];
+  let { component: Page, config } = pages[pageIndex];
   return (
     <form onSubmit={handleSubmit}>
-      <Page onChange={handleChange} person={person} formData={formData}/>
+      <Page config={config} onChange={handleChange} person={person} formData={formData} />
       
       <button type="button" data-action="prev" onClick={handleClick}>Previous</button>
       <button type="button" data-action="next" onClick={handleClick}>Next</button>
