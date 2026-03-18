@@ -10,7 +10,9 @@ const person = {
     endDate: "",
     description: [""],
   }],
-  education: [{}],
+  education: [{
+    school: "",
+  }],
   skills: {
     soft: [""],
     hard: [""],

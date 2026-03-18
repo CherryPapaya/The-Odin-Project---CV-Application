@@ -2,7 +2,7 @@ import { useState } from "react";
 import GeneralInfo from "./pages/GeneralInfo";
 import ListPage from "./pages/ListPage";
 import { getArrayProperties } from "../../data/person";
-import { educationConfig, experienceConfig } from "../../data/page-configs";
+import { educationConfig, experienceConfig } from "../../data/data-configs";
 
 const pages = [
   { component: GeneralInfo },

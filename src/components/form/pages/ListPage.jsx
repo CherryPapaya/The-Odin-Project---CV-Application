@@ -4,7 +4,16 @@ export default function ListPage({ config, onChange, person, formData }) {
   const list = formData[config.name] ?? person[config.name] ?? [];
 
   function handleAdd() {
-    onChange(config.name, {}, list.length);
+    const lastItem = list[list.length - 1];
+
+    if (
+      lastItem &&
+      Object.values(lastItem).every(value => value === "")
+    ) {
+      return;
+    } else {
+      onChange(config.name, {}, list.length);
+    }
   }
 
   return (
